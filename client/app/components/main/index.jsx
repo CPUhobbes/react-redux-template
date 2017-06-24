@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import io from 'socket.io-client';
 
+const socket = io.connect();
 // Main class component
 class Main extends React.Component {
   static propTypes = {
@@ -17,7 +19,9 @@ class Main extends React.Component {
 
   // Other functions here
 
-  componentWillMount() {}
+  componentDidMount() {
+    socket.emit('chat message', 'Hello there');
+  }
 
   render() {
     return (

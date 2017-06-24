@@ -1,31 +1,47 @@
 // Dependencies
 const express = require('express');
+const app = require('express')();
 const Players = require('./server/models/Players.js');
 const Routes = require('./server/config/routes.js');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 const Promise = require('bluebird');
 const Path = require('path');
-    
-// Express    
-app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+/**
+ * --- Mongoose ---
+ */
 
 // Mongoose promise
 Mongoose.Promise = Promise;
 
-// Mongoose
 // mongoose.connect("mongodb://DBNAMEHERE");
-Mongoose.connect("mongodb://localhost/theResistance");
+Mongoose.connect('mongodb://localhost/theResistance');
 const db = Mongoose.connection;
 
 // Mongoose Error
-db.on("error", function(error) {
-    console.log("Mongoose Error: ", error);
+db.on('error', (error) => {
+  console.log('Mongoose Error: ', error);
 });
 
 // Mongoose Connect
-db.once("open", function() {
-    console.log("Mongoose connection successful.");
+db.once('open', () => {
+  console.log('Mongoose connection successful.');
+});
+
+// Socket.io connection
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+  socket.on('chat message', (msg) => {
+    console.log(`Message: ${msg}`);
+  });
 });
 
 // Add Body Parser
@@ -37,10 +53,10 @@ app.use(express.static(Path.join(__dirname, 'client', 'public')));
 
 // Routes
 app.use('/', Routes);
- 
-// Listen on port 3000
-app.listen(process.env.PORT || 3000, () => {
-    console.log("App running on port 3000!");
+
+// Server listen
+http.listen(process.env.PORT || 3000, () => {
+  console.log(`Listening on ${process.env.PORT || 3000}`);
 });
 
 module.exports = app;
