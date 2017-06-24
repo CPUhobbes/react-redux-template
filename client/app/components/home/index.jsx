@@ -1,4 +1,5 @@
 import React from 'react';
+import { Jumbotron, Button } from 'react-bootstrap';
 
 // Main class component
 class Main extends React.Component {
@@ -17,7 +18,15 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <p>Hello React App! Home</p>
+        <Jumbotron>
+          <h1>The Resistance Game</h1>
+          <p>
+            Defend the world against tyranny!  Play in a private game with friends or join a public game!
+          </p>
+          <p className="text-center">
+            <Button bsStyle="primary">Join a Game</Button>
+          </p>
+        </Jumbotron>
       </div>
     );
   }
