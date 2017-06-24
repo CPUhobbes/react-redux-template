@@ -1,8 +1,12 @@
+// Reference the high-level components
+import Main from '../components/main';
+import Home from '../components/home';
+
 // Inclue the React library
-const React = require("react");
+const React = require('react');
 
 // Include the react-router module
-const router = require("react-router");
+const router = require('react-router');
 
 // Include the Route component for displaying individual routes
 const Route = router.Route;
@@ -18,19 +22,14 @@ const hashHistory = router.hashHistory;
 // Include the IndexRoute (catch-all route)
 const IndexRoute = router.IndexRoute;
 
-// Reference the high-level components
-import Main from "../components/main";
-import Home from "../components/home";
-
 // Export the Routes
-module.exports = (
-
+module.exports =
   // The high level component is the Router component
-  <Router history={hashHistory}>
+  (
+    <Router history={hashHistory}>
 
-    <Route path="/" component={Main}>
-    	<IndexRoute component={Home} />
-    
-    </Route>
-  </Router>
-);
+      <Route path="/" component={Main}>
+        <IndexRoute component={Home} />
+      </Route>
+    </Router>
+  );
