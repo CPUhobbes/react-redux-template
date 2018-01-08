@@ -1,7 +1,6 @@
 // Dependencies
 const express = require('express');
 const app = require('express')();
-const Players = require('./server/models/Players.js');
 const Routes = require('./server/config/routes.js');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
@@ -39,8 +38,9 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 
-  socket.on('chat message', (msg) => {
+  socket.on('player_added', (msg) => {
     console.log(`Message: ${msg}`);
+    io.emit('player_added', Math.random());
   });
 });
 

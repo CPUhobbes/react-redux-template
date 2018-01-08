@@ -1,6 +1,6 @@
 module.exports = {
   // This code will be compiled
-  entry: './client/app/components/index.js',
+  entry: './client/app/index.jsx',
 
   // Then output into this file
   output: {
@@ -24,5 +24,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
+  },
+  devServer: {
+    historyApiFallback: true,
   },
 };

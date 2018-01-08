@@ -1,7 +1,7 @@
-let Index = {
-    loadIndex: (req, res) => {
-        res.send('index.html');
-    }
-}
+const Index = {
+  loadIndex: (req, res) => {
+    res.send('index.html');
+  },
+};
 
 module.exports = Index;

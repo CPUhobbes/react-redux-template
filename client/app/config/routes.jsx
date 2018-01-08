@@ -1,35 +1,12 @@
-// Reference the high-level components
-import Main from '../components/main';
-import Home from '../components/home';
+import React from 'react';
+import { Route, IndexRoute } from 'react-router';
+import App from './../components/App';
+import Home from './../components/home/Home';
+import Child from './../components/child/Child';
 
-// Inclue the React library
-const React = require('react');
-
-// Include the react-router module
-const router = require('react-router');
-
-// Include the Route component for displaying individual routes
-const Route = router.Route;
-
-// Include the Router component to contain all our Routes
-// Here where we can pass in some configuration as props
-const Router = router.Router;
-
-// Include the hashHistory prop to handle routing client side without a server
-// https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md#hashhistory
-const hashHistory = router.hashHistory;
-
-// Include the IndexRoute (catch-all route)
-const IndexRoute = router.IndexRoute;
-
-// Export the Routes
-module.exports =
-  // The high level component is the Router component
-  (
-    <Router history={hashHistory}>
-
-      <Route path="/" component={Main}>
-        <IndexRoute component={Home} />
-      </Route>
-    </Router>
-  );
+export default (
+  <Route path="/" component={App}>
+    <IndexRoute component={Home} />
+    <Route path="/child" component={Child} />;
+  </Route>
+);

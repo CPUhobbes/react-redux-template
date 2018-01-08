@@ -38,3 +38,7 @@ jspm_packages
 
 #Misc
 .DS_Store
+.eslintrc
+.babelrc
+.flowconfig
+
