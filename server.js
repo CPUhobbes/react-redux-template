@@ -17,7 +17,7 @@ const io = require('socket.io')(http);
 Mongoose.Promise = Promise;
 
 // mongoose.connect("mongodb://DBNAMEHERE");
-Mongoose.connect('mongodb://localhost/theResistance');
+Mongoose.connect('mongodb://localhost/theResistance', { useMongoClient: true });
 const db = Mongoose.connection;
 
 // Mongoose Error

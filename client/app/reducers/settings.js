@@ -4,7 +4,7 @@ import initialState from './initialState';
 export default function (state = initialState, action) {
   switch (action.type) {
     case Types.LOAD_API:
-      return state.setIn(['api'], action.api);
+      return state.setIn(['api'], action.apiData);
 
     default:
       return state;

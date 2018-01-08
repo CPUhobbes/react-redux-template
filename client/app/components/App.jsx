@@ -6,7 +6,6 @@ import Header from './common/Header';
 
 class App extends React.Component {
   static propTypes = {
-    children: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     loadAPI: PropTypes.func.isRequired,
   };
 
@@ -18,7 +17,6 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <Header />
-        {this.props.children}
       </div>
     );
   }

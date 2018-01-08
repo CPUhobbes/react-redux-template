@@ -1,15 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, hashHistory } from 'react-router';
-import routes from './config/routes';
+import Root from './config/routes';
 import configureStore from './store/configureStore';
 
 const store = configureStore();
 
-render(
-  <Provider store={store}>
-    <Router history={hashHistory} routes={routes} />
-  </Provider>,
-  document.getElementById('app'),
-);
+render(<Root store={store} />, document.getElementById('app'));

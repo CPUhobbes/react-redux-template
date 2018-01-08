@@ -1,10 +1,10 @@
-/* eslint no-underscore-dangle: [2, { "exceptions": [ "_loadData"] }] */
+/* eslint no-underscore-dangle: ["error", { "allow": ["_loadAPI"] }] */
 
 import Types from './actionTypes';
 import api from '../helpers/helpers';
 
-export function _loadAPI(api) {
-  return { type: Types.LOAD_API, api };
+export function _loadAPI(apiData) {
+  return { type: Types.LOAD_API, apiData };
 }
 
 export function loadAPI() {

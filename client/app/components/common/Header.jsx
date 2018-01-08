@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => (
   <nav>
-    <IndexLink to="/" activeClassName="active">Home</IndexLink>
+    <NavLink to="/" activeClassName="active">Home</NavLink>
     {' | '}
-    <Link to="/child" activeClassName="active">Child Component</Link>
+    <NavLink to="/child" activeClassName="active">Child Component</NavLink>
   </nav>
 );
 

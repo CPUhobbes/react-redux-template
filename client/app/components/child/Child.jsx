@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
+import io from 'socket.io-client';
 import * as actions from '../../actions/actions';
+
+const socket = io.connect();
 
 class Child extends React.Component {
   static propTypes = {
@@ -13,6 +16,7 @@ class Child extends React.Component {
 
   componentWillMount() {
     const { updateLocation } = this.props;
+    socket.emit('test message', 'Hello there');
     updateLocation();
   }
 
