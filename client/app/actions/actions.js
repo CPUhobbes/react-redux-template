@@ -22,6 +22,7 @@ export function loadAPI() {
 }
 
 export function updateLocation(location) {
+  console.log(location);
   return {
     type: Types.UPDATE_LOCATION,
     location,

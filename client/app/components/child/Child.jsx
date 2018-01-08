@@ -22,14 +22,21 @@ class Child extends React.Component {
 
   render() {
     const { settings, moreSettings } = this.props;
+    let id = '';
     if (settings) {
       console.log(settings.toJS());
     }
     if (moreSettings) {
+      id = moreSettings.get('userId');
       console.log(moreSettings.toJS());
     }
 
-    return <div>CHILD COMPONENT</div>;
+    return (
+      <div>
+        <div>CHILD COMPONENT</div>
+        <div>Current ID - {id}</div>
+      </div>
+    );
   }
 }
 

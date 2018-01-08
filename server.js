@@ -8,6 +8,7 @@ const Promise = require('bluebird');
 const Path = require('path');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
+const ioSocket = require('./server/helpers/io');
 
 /**
  * --- Mongoose ---
@@ -30,19 +31,8 @@ db.once('open', () => {
   console.log('Mongoose connection successful.');
 });
 
-// Socket.io connection
-io.on('connection', (socket) => {
-  console.log('a user connected');
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-
-  socket.on('player_added', (msg) => {
-    console.log(`Message: ${msg}`);
-    io.emit('player_added', Math.random());
-  });
-});
+// Load Socket.io helper tasks
+ioSocket(io);
 
 // Add Body Parser
 app.use(BodyParser.json());
