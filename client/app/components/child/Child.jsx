@@ -5,30 +5,27 @@ import Immutable from 'immutable';
 import io from 'socket.io-client';
 import * as actions from '../../actions/actions';
 
-const socket = io.connect();
-
 class Child extends React.Component {
   static propTypes = {
     settings: PropTypes.instanceOf(Immutable.Iterable).isRequired,
-    moreSettings: PropTypes.instanceOf(Immutable.Iterable).isRequired,
+    socketio: PropTypes.instanceOf(Immutable.Iterable).isRequired,
     updateLocation: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
     const { updateLocation } = this.props;
-    socket.emit('test message', 'Hello there');
     updateLocation();
   }
 
   render() {
-    const { settings, moreSettings } = this.props;
+    const { settings, socketio } = this.props;
     let id = '';
     if (settings) {
       console.log(settings.toJS());
     }
-    if (moreSettings) {
-      id = moreSettings.get('userId');
-      console.log(moreSettings.toJS());
+    if (socketio) {
+      id = socketio.get('connectedUsers');
+      console.log(socketio.toJS());
     }
 
     return (
@@ -42,7 +39,7 @@ class Child extends React.Component {
 
 const mapStateToProps = state => ({
   settings: state.settings,
-  moreSettings: state.moreSettings,
+  socketio: state.socketio,
 });
 
 const mapDispatchToProps = dispatch => ({
